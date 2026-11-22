@@ -1,6 +1,8 @@
 #include <cuda_runtime.h>
 
 __global__ void vector_add(const float* A, const float* B, float* C, int N) {
+    
+    //Each thread is doing only 1 element in its block,then it will skip over all the blocks to do leftover elements
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
     
     for(int i= idx; i < N; i+= blockDim.x*gridDim.x) {
