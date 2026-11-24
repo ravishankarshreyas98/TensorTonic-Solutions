@@ -1,6 +1,7 @@
 #include <cuda_runtime.h>
 #include <math.h>
 
+//Much better implementation uses approximation for sigmoid https://leimao.github.io/blog/CUDA-Approximate-Sigmoid/
 __global__ void sigmoid_kernel(const float* input, float* output, int N) {
     // Store N element-wise results in output; this kernel returns no value.
     int idx = blockIdx.x*blockDim.x + threadIdx.x;
